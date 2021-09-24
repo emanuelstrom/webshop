@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
-// import TopNavbar from '../TopNavbar/TopNavbar';
+import Navbar from '../Navbar/Navbar';
 
 const RouteWithSubRoutes = (route) => {
 	return (
@@ -36,7 +36,7 @@ const Content = (props) => {
 const ScreensRoot = () => {
 	return (
 		<Router>
-			{/* <TopNavbar cartIsOpen={cartIsOpen} setCartIsOpen={setCartIsOpen} /> */}
+			<Navbar />
 			<Content />
 		</Router>
 	);

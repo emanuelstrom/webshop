@@ -5,7 +5,7 @@ import IsLoading from './components/IsLoading/IsLoading.js';
 import './index.css';
 import { Provider } from 'react-redux';
 import configureStore from './reduxStore/configureStore';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import { mainTheme } from './style/material-themes';
 
 const store = configureStore();
