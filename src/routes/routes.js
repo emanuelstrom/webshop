@@ -7,14 +7,14 @@ const NoMatch = () => {
 
 export const ROUTES = [
 	{
-		path: '/products',
+		path: '/checkout',
 		exact: true,
-		component: Products
+		component: Checkout
 	},
 	{
 		path: '/',
 		exact: true,
-		component: Checkout
+		component: Products
 	},
 	{
 		path: '*',
