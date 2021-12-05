@@ -4,8 +4,11 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { useHistory } from 'react-router-dom';
 
 const Navbar = (props) => {
+	const history = useHistory();
+
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">
@@ -13,8 +16,12 @@ const Navbar = (props) => {
 					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 						Techover
 					</Typography>
-					<Button color="inherit">Checkout</Button>
-					<Button color="inherit">Products</Button>
+					<Button onClick={() => history.push('/checkout')} color="inherit">
+						Checkout
+					</Button>
+					<Button onClick={() => history.push('/')} color="inherit">
+						Products
+					</Button>
 				</Toolbar>
 			</AppBar>
 		</Box>
