@@ -2,8 +2,6 @@ import { createTheme } from '@mui/material/styles';
 
 const white = '#ffffff';
 const neonDark = '#00c896';
-const dark = '#1b1b1b';
-const blue = '##36abfd';
 
 const primary = { light: neonDark, main: neonDark, dark: neonDark, contrastText: white };
 
