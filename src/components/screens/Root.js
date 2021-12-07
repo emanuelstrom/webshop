@@ -23,8 +23,6 @@ const Content = (props) => {
 						<RouteWithSubRoutes
 							key={i}
 							{...route}
-							cartIsOpen={props.cartIsOpen}
-							setCartIsOpen={props.setCartIsOpen}
 						/>
 					);
 				})}

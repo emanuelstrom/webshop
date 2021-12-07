@@ -1,9 +1,12 @@
 import { createTheme } from '@mui/material/styles';
 
 const white = '#ffffff';
-const neonDark = '#00c896';
+const ebony = '#5D675B';
+const black =  '#02020A';
+const silver = '#C3BABA';
+const blue = '#05204A';
 
-const primary = { light: neonDark, main: neonDark, dark: neonDark, contrastText: white };
+const primary = { light: silver, main: ebony, dark: black, contrastText: white };
 
 const h1 = { fontFamily: 'Roboto sans-serif', fontWeight: 400, fontSize: '24px', lineHeight: '30px' };
 const h2 = { fontFamily: 'Roboto sans-serif', fontWeight: 400, fontSize: '20px', lineHeight: '24px' };
