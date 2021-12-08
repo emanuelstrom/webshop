@@ -3,7 +3,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import useStyles from './styles'
 
-const ProductCard = ({ loading, title, price, image, id, description, category, raiting }) => {
+const ProductCard = ({ loading, title, price, image, id, description, category, raiting, onIncrement, onDecrement }) => {
 
     const classes = useStyles();
     
@@ -13,23 +13,39 @@ const ProductCard = ({ loading, title, price, image, id, description, category, 
             <div className={classes.productCardFlex}>
                 <div className={classes.informationContainer}>
                     <div className={classes.info}>
+                        {loading ? (
+                                <Skeleton variant="rect" width={65} height={92} style={{ marginRight: 20 }} />
+                            ) : (
                         <img className={classes.img} src={image} alt={title} />
+                            )
+                        }
                         <div className={classes.details}>
                             <Typography variant="subtitle2">
-                                <p classname={`${classes.title} ${classes.detailMargin}`}>
-                                    {title}
-                                </p>
+                                {loading ? (
+                                        <Skeleton variant="text" width={50} height={20} />
+                                    ) : (
+                                        <p classname={`${classes.title} ${classes.detailMargin}`}>
+                                            {title}
+                                        </p>
+                                    )}
                             </Typography>
-                            <p className={classes.detailMargin}>{price} kr</p>
+
+                            {loading ? (
+								<Skeleton variant="text" width={80} height={20} />
+                                ) : (
+                                <p className={classes.detailMargin}>{price} kr</p>
+                            )}
                         </div>
                     </div>
                 </div>
 
+
+
                 <div className={classes.buttons}>
-                    <IconButton aria-label="plus" onClick={() => {}}>
+                    <IconButton aria-label="plus" onClick={onIncrement}>
                         <AddIcon fontSize="large" className={classes.button} />
                     </IconButton>
-                    <IconButton aria-label="plus" onClick={() => {}}>
+                    <IconButton aria-label="plus" onClick={onDecrement}>
                         <RemoveIcon fontSize="large" className={classes.button} />
                     </IconButton>
                 </div>

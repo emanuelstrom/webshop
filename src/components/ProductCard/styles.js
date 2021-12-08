@@ -40,11 +40,38 @@ const useStyles = makeStyles((theme) =>
             marginRight: 20,
             objectFit: 'contain',
         },
-        details: {},
-        title: {},
-        detailMargin: {},
-        buttons: {},
-        button: {},
+        details: {
+            left: 0,
+            float: 'left'
+        },
+        title: {
+            fontSize: 17,
+            lineHeight: 'normal'
+        },
+        detailMargin: {
+            margin: 0,
+            marginBottom: 5
+        },
+        buttons: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            position: 'absolute',
+            right: 0,
+            height: '100%'
+        },
+        button: {
+            color: '#05204A',
+        },
+        buttonDisabled: {
+			color: '#f7f8fa'
+		},
+		divider: {
+			transform: 'translateY(-1px)',
+			width: '90%',
+			margin: 'auto'
+		}
 
 	})
 );

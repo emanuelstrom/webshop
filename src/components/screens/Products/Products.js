@@ -3,16 +3,30 @@ import { Typography, Container, Grid, Button } from '@mui/material';
 import useStyles from './styles';
 import { connect } from 'react-redux';
 import ProductCard from '../../ProductCard/ProductCard';
+import { incrementProduct, decrementProduct } from '../../../reduxStore/actions';
 
-const Products = ({ products, loading, error }) => {
+const Products = ({ products, loading, error, onIncrement, onDecrement }) => {
 	const classes = useStyles();
-	console.log(products)
+
+	
+	const showSkeletonLoaders = () => {
+		return [1,2,3,4,5].map((d) => <ProductCard loading={true} key={d} />)
+	}
 
 	const renderProductCards = () => {
-		if(loading) return [1,2,3,4,5].map((d) => <ProductCard loading={loading} key={d} />)
+		if(loading) return showSkeletonLoaders();
 
-		const array = products.map((item) => {
-			return <ProductCard {...item} loading={loading} key={item.id} />
+		const array = products.map((prod, i) => {
+			return (
+				<ProductCard 
+					{...prod} 
+					loading={false} 
+					key={i} 
+					onIncrement={() => onIncrement(prod)}
+					onDecrement={() => onDecrement(prod)}
+					
+				/>
+			)
 		});
 		return array
 	}
@@ -24,7 +38,9 @@ const Products = ({ products, loading, error }) => {
 				<div className="Products__view">
 					{/* Header */}
 					<div>
-						<Typography variant="h1" >Välj varor</Typography>
+						<Typography variant="h1" className={classes.productsTitle}>
+							Välj varor
+						</Typography>
 					</div>
 					{/* End Header */}
 
@@ -47,4 +63,11 @@ const mapStateToProps = (state) => {
 	return { products: items, loading, error }
 }
 
-export default connect(mapStateToProps)(Products);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onIncrement: (data) => dispatch(incrementProduct(data)),
+		onDecrement: (data) => dispatch(decrementProduct(data))
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);
