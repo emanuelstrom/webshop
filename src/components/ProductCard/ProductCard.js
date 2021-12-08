@@ -3,7 +3,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import useStyles from './styles'
 
-const ProductCard = ({ loading, title, price, image, id, description, category, raiting, onIncrement, onDecrement }) => {
+const ProductCard = ({ loading, title, price, image, id, description, category, raiting, onIncrement, onDecrement, isLast }) => {
 
     const classes = useStyles();
     
@@ -50,6 +50,11 @@ const ProductCard = ({ loading, title, price, image, id, description, category, 
                     </IconButton>
                 </div>
             </div>
+            {!isLast && (
+				<div className={classes.divider}>
+					<Divider variant="middle" />
+				</div>
+			)}
         </div>
     )
 };

@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) =>
 			marginBottom: 30
 		},
 		productsTitle: {
-
+			fontFamily: 'roboto'
 		},        
 	})
 );

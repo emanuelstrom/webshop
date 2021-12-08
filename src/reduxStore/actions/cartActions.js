@@ -4,12 +4,33 @@ export const resetCart = () => {
     return { type: actionTypes.RESET_CART }
 };
 
-export const calculateTotalCartAmount = () => {};
+export const calculateTotalCartAmount = () => {
+	return (dispatch, getState) => {
+		const state = getState();
+		const { orders } = state.cart;
+		const totalPrice = orders.reduce((prev, curr) => {
+			const { product, quantity } = curr;
+			const price = parseInt(product.price);
+			const sum = (prev += price * quantity);
+			return sum;
+		}, 0);
+		const DELIVERY_COST = 39;
+		const deliveryFee = totalPrice > 500 ? 0 : DELIVERY_COST;
+
+		dispatch({
+			type: actionTypes.CALCULATE_TOTAL_CART_AMOUNT,
+			productPrice: totalPrice,
+			deliveryFee: deliveryFee,
+			totalPrice: totalPrice + deliveryFee
+		});
+	};
+};
+
 
 export const incrementProduct = (payload) => {
     return (dispatch) => {
         dispatch({ type: actionTypes.INCREMENT_PRODUCT, payload:payload });
-        //dispatch(calculateTotalCartAmount());
+        dispatch(calculateTotalCartAmount());
 
     } 
 }
@@ -17,7 +38,7 @@ export const incrementProduct = (payload) => {
 export const decrementProduct = (payload) => {
     return (dispatch) => {
         dispatch({ type: actionTypes.DECREMENT_PRODUCT, payload:payload });
-        //dispatch(calculateTotalCartAmount());
+        dispatch(calculateTotalCartAmount());
 
     } 
 }
