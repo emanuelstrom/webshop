@@ -23,12 +23,31 @@ const useStyles = makeStyles((theme) =>
 			width: 'fit-content',
 			borderRadius: 50,
 			color: '#ffffff',
-			fontWeight: 300
+			fontWeight: 300,
 		},
+
+		chipContainer: {
+			display: 'flex',
+			justifyContent: 'right',
+			alignItems: 'center',
+			flexDirection: 'row',
+			marginBottom: 10
+		},
+
 		img: {
-			width: 30,
+			width: 80,
 			marginBottom: 10,
 			objectFit: 'contain'
+		},
+		totalAmmount: {
+			width: 'max-content',
+			display: 'flex',
+			flexDirection: 'column',
+			alignItems: 'center',
+			marginLeft: 'auto',
+		},
+		gridTotalAmmountContainer: {
+			
 		}
 	})
 );

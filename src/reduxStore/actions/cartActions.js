@@ -8,20 +8,20 @@ export const calculateTotalCartAmount = () => {
 	return (dispatch, getState) => {
 		const state = getState();
 		const { orders } = state.cart;
-		const totalPrice = orders.reduce((prev, curr) => {
+		const productPrice = orders.reduce((prev, curr) => {
 			const { product, quantity } = curr;
 			const price = parseInt(product.price);
 			const sum = (prev += price * quantity);
 			return sum;
 		}, 0);
 		const DELIVERY_COST = 39;
-		const deliveryFee = totalPrice > 500 ? 0 : DELIVERY_COST;
+		const deliveryFee = productPrice > 500 || productPrice === 0 ? 0 : DELIVERY_COST;
 
 		dispatch({
 			type: actionTypes.CALCULATE_TOTAL_CART_AMOUNT,
-			productPrice: totalPrice,
+			productPrice: productPrice,
 			deliveryFee: deliveryFee,
-			totalPrice: totalPrice + deliveryFee
+			totalPrice: productPrice + deliveryFee
 		});
 	};
 };

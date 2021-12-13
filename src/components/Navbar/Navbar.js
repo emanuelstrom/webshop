@@ -6,10 +6,16 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useHistory } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-
+import Badge from '@mui/material/Badge';
+import IconButton from '@mui/material/IconButton';
+import { connect } from 'react-redux'
 
 const Navbar = (props) => {
 	const history = useHistory();
+
+const getNumberOfCartItems = () => {
+	return 5
+}
 
 	return (
 		<Box sx={{ flexGrow: 1 }}>
@@ -22,15 +28,20 @@ const Navbar = (props) => {
 						HEM
 					</Button>
 					<Button onClick={() => history.push('/products')} color="inherit">
-						PRRODUKTER
-					</Button>
-					<Button onClick={() => history.push('/checkout')} color="inherit">
-						VARUKORG <ShoppingCartIcon />
-					</Button> 	
+						PRODUKTER
+					</Button>	
+					<IconButton onClick={() => history.push('/checkout')} size="small">
+						<Badge badgeContent={getNumberOfCartItems()} color="secondary">
+							<ShoppingCartIcon style={{marginLeft: 5}} />
+						</Badge>
+					</IconButton>
+					
 				</Toolbar>
 			</AppBar>
 		</Box>
 	);
 };
 
-export default Navbar;
+
+
+export default connect(null)(Navbar);

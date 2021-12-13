@@ -8,16 +8,25 @@ const CartItem = ({ product, quantity }) => {
     return (
         <div className={classes.cartItem}>
             <Grid container spaceing={2}>
-                <Grid item xs={10}>
+                <Grid item xs={12}>
                     <Typography variant="h3" className={classes.title}>
                         {product.title}
                     </Typography>
                 </Grid>
-                <img className={classes.img} src={product.image} alt={product.title}></img>
-                <div className={classes.chip}>{parseInt(product.price) * quantity} kr </div>
-            </Grid>
-            <Grid item xs={2}>
-                <ControlButtons product={product} quantity={quantity} />
+                <Grid item xs={2}>
+                    <img className={classes.img} src={product.image} alt={product.title}></img>
+                </Grid>
+                <Grid item xs={10} >
+                    <div className={classes.totalAmmount}>
+                        <div className={classes.chipContainer}>
+                            <div className={classes.chip}>{parseInt(product.price) * quantity} kr </div>
+                        </div>
+                        <ControlButtons product={product} quantity={quantity} />
+                        
+                    </div>
+                </Grid>
+                <Grid item xs={10}>
+                </Grid>
             </Grid>
         </div>
     );

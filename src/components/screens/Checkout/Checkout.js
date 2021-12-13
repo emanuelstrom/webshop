@@ -1,10 +1,23 @@
-import { Typography, Container, Grid, Divider } from '@mui/material';
+import { Typography, Container, Grid, Divider, Button } from '@mui/material';
 import useStyles from './styles';
 import { connect } from 'react-redux';
 import CartItem from '../../CartItem/CartItem';
+import { resetCart } from '../../../reduxStore/actions/cartActions';
 
-const Checkout = ({ cart }) => {
+const Checkout = ({ cart, resetCart }) => {
 	const classes = useStyles();
+	console.log(cart.orders)
+
+	let myKlarnaCart = cart.orders.map((i) => {
+		return {
+			id: i.product.id,
+			quantity: i.quantity
+		}
+
+
+	})
+
+	myKlarnaCart = JSON.stringify(myKlarnaCart)
 
 	const renderCartItems = () => {
 		return cart.orders.map((item) => <CartItem {...item} />);
@@ -12,18 +25,15 @@ const Checkout = ({ cart }) => {
 
 	return (
 		<div id="Checkout__screen" className={classes.screen}>
-			<Container maxWidth="sm">
+			<Container maxWidth="lg">
 				<div className={classes.productHeader}>
 					<Typography variant="h1" className={classes.productsTitle}>
 						Checkout
 					</Typography>
 				</div>
-				<Grid container spacing={2} justify="center" >
-					<Grid item xs={12}>
+				<Grid container spacing={2} justify="center">
+					<Grid item xs={5}>
 						{renderCartItems()}
-					</Grid>
-				</Grid>
-
 				<Divider style={{ marginBottom: 20 }} />
 				<Grid container spacing={2} justify="center">
 					<Grid item xs={10}>
@@ -41,10 +51,22 @@ const Checkout = ({ cart }) => {
 					<Grid item xs={10}>
 						Total:
 					</Grid>
-					<Grid item xs={2}>
+					<Grid item xs={2} style={{ marginBottom: 20 }}>
 						{cart.totalPrice} kr
 					</Grid>
 				</Grid>
+					</Grid>
+					<Grid item xs={7}>
+						<div>
+							<iframe src={"https://klarna-checkout-emanuel.herokuapp.com/checkout/AAA-123?myKlarnaCart=" + myKlarnaCart} className={classes.klarnaIframe}></iframe>
+						</div>
+					</Grid>
+				</Grid>
+
+				<Button onClick={resetCart} variant="contained" className={classes.resetButton}>
+					Reset cart
+				</Button>
+
 			</Container>
 		</div>
 	);
@@ -57,7 +79,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-	return {}
+	return {
+		resetCart: () => dispatch(resetCart())
+	}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout)

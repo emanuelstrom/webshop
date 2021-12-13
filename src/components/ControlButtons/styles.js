@@ -4,9 +4,9 @@ const useStyles = makeStyles((theme) =>
 	createStyles({
 		buttons: {
 			display: 'flex',
-			justifyContent: 'center',
+			justifyContent: 'right',
 			alignItems: 'center',
-			flexDirection: 'column',
+			flexDirection: 'row',
 			right: '0px',
 			height: '100%'
 		},

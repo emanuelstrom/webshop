@@ -14,6 +14,19 @@ const ControlButtons = ({ onIncrement, onDecrement, quantity, product }) => {
 
     return (
         <div className={classes.buttons}>
+            <IconButton aria-label="minus" onClick={() => onDecrement(product)} disabled={disabled}>
+                <RemoveIcon fontSize="large" className={disabled ? classes.buttonDisabled : classes.button} />
+            </IconButton>
+            <div className={classes.quantity} style={showQuantityStyle}>
+                {quantity ? quantity: 0}
+            </div>
+            <IconButton aria-label="plus" onClick={() => onIncrement(product)}>
+                <AddIcon fontSize="large" className={classes.button} />
+            </IconButton>
+        </div>
+    );
+    /* return (
+        <div className={classes.buttons}>
             <IconButton aria-label="plus" onClick={() => onIncrement(product)}>
                 <AddIcon fontSize="large" className={classes.button} />
             </IconButton>
@@ -24,7 +37,7 @@ const ControlButtons = ({ onIncrement, onDecrement, quantity, product }) => {
                 <RemoveIcon fontSize="large" className={disabled ? classes.buttonDisabled : classes.button} />
             </IconButton>
         </div>
-    );
+    ); */
 };
 
 const mapDispatchToProps = (dispatch) => {
