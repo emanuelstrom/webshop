@@ -24,18 +24,20 @@ const useStyles = makeStyles((theme) =>
 			fontSize: '0.8rem'
 		},
 		resetButton: {
-			marginBottom: '20px',
+			marginBottom: '20px'
 		},
 
 		klarnaIframe: {
+			display: 'flex',
+			justifyContent: 'center',
 			width: '100%',
-			height: '857px',
+			height: '1000px',
 			border: 0,
-			marginTop: 0,
+			margin: '0 auto',
 			padding: '10px 20px',
-    		background: '#ffffff',
-    		borderRadius: '5px',
-    		marginBottom: '15px',
+			background: '#ffffff',
+			borderRadius: '5px',
+			marginBottom: '15px',
 			overflowX: 0
 		}
 	})

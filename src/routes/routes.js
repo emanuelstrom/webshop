@@ -1,6 +1,5 @@
 import Products from '../components/screens/Products/Products';
 import Checkout from '../components/screens/Checkout/Checkout';
-import Home from '../components/screens/Home/Home';
 
 const NoMatch = () => {
 	return <div>404</div>;
@@ -20,7 +19,7 @@ export const ROUTES = [
 	{
 		path: '/',
 		exact: true,
-		component: Home
+		component: Products
 	},
 	{
 		path: '*',

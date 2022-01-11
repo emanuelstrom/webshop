@@ -8,29 +8,26 @@ import { incrementProduct, decrementProduct } from '../../../reduxStore/actions'
 const Products = ({ products, loading, error, onIncrement, onDecrement }) => {
 	const classes = useStyles();
 
-	
 	const showSkeletonLoaders = () => {
-		return [1,2,3,4,5].map((d) => <ProductCard loading={true} key={d} />)
-	}
+		return [1, 2, 3, 4, 5].map((d) => <ProductCard loading={true} key={d} />);
+	};
 
 	const renderProductCards = () => {
-		if(loading) return showSkeletonLoaders();
+		if (loading) return showSkeletonLoaders();
 
 		const array = products.map((prod, i) => {
 			return (
-				<ProductCard 
-					{...prod} 
-					loading={false} 
-					key={i} 
+				<ProductCard
+					{...prod}
+					loading={false}
+					key={i}
 					onIncrement={() => onIncrement(prod)}
 					onDecrement={() => onDecrement(prod)}
-					
 				/>
-			)
+			);
 		});
-		return array
-	}
-
+		return array;
+	};
 
 	return (
 		<div id="Product__screen">
@@ -54,20 +51,19 @@ const Products = ({ products, loading, error, onIncrement, onDecrement }) => {
 				</div>
 			</Container>
 		</div>
-	)
-	
+	);
 };
 
 const mapStateToProps = (state) => {
 	const { items, loading, error } = state.products;
-	return { products: items, loading, error }
-}
+	return { products: items, loading, error };
+};
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onIncrement: (data) => dispatch(incrementProduct(data)),
 		onDecrement: (data) => dispatch(decrementProduct(data))
-	}
-}
+	};
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

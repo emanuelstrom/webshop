@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes';
 
 export const resetCart = () => {
-    return { type: actionTypes.RESET_CART }
+	return { type: actionTypes.RESET_CART };
 };
 
 export const calculateTotalCartAmount = () => {
@@ -15,7 +15,7 @@ export const calculateTotalCartAmount = () => {
 			return sum;
 		}, 0);
 		const DELIVERY_COST = 39;
-		const deliveryFee = productPrice > 500 || productPrice === 0 ? 0 : DELIVERY_COST;
+		const deliveryFee = productPrice > 500 ? 0 : DELIVERY_COST;
 
 		dispatch({
 			type: actionTypes.CALCULATE_TOTAL_CART_AMOUNT,
@@ -26,19 +26,16 @@ export const calculateTotalCartAmount = () => {
 	};
 };
 
-
 export const incrementProduct = (payload) => {
-    return (dispatch) => {
-        dispatch({ type: actionTypes.INCREMENT_PRODUCT, payload:payload });
-        dispatch(calculateTotalCartAmount());
-
-    } 
-}
+	return (dispatch) => {
+		dispatch({ type: actionTypes.INCREMENT_PRODUCT, payload: payload });
+		dispatch(calculateTotalCartAmount());
+	};
+};
 
 export const decrementProduct = (payload) => {
-    return (dispatch) => {
-        dispatch({ type: actionTypes.DECREMENT_PRODUCT, payload:payload });
-        dispatch(calculateTotalCartAmount());
-
-    } 
-}
+	return (dispatch) => {
+		dispatch({ type: actionTypes.DECREMENT_PRODUCT, payload: payload });
+		dispatch(calculateTotalCartAmount());
+	};
+};
